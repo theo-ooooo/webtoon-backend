@@ -4,6 +4,7 @@ import com.webtoon.global.config.AwsS3Properties;
 import com.webtoon.global.exception.ApiException;
 import com.webtoon.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@ConditionalOnBean(S3Client.class)
 public class S3UploadService {
 
     private final S3Client s3Client;

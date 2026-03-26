@@ -3,6 +3,7 @@ package com.webtoon.domain.upload.controller;
 import com.webtoon.domain.upload.service.S3UploadService;
 import com.webtoon.global.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/upload")
 @RequiredArgsConstructor
+@ConditionalOnBean(S3UploadService.class)
 public class UploadController {
 
     private final S3UploadService s3UploadService;

@@ -11,4 +11,6 @@ public class AwsS3Properties {
     private String bucket;
     private String region;
     private String profile;
+    private String accessKey;
+    private String secretKey;
 }

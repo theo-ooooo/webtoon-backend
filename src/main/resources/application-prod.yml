@@ -1,14 +1,20 @@
+server:
+  port: ${PORT:8080}
+
 spring:
   datasource:
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
 
   servlet:
     multipart:
@@ -17,10 +23,14 @@ spring:
 
 jwt:
   secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
 
 aws:
   s3:
-    bucket: ${AWS_S3_BUCKET}
-    region: ${AWS_REGION}
-    profile: ${AWS_PROFILE:default}
+    bucket: ${AWS_S3_BUCKET:}
+    region: ${AWS_REGION:ap-northeast-2}
+    access-key: ${AWS_ACCESS_KEY:}
+    secret-key: ${AWS_SECRET_KEY:}
