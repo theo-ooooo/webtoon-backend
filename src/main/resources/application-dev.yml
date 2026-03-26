@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:webtoon}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+jwt:
+  secret: ${JWT_SECRET:webtoon-jwt-secret-key-change-this-in-production-must-be-256-bits}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+aws:
+  s3:
+    bucket: ${AWS_S3_BUCKET:webtoon-uploads}
+    region: ${AWS_REGION:ap-northeast-2}
+    profile: ${AWS_PROFILE:default}
