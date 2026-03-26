@@ -39,7 +39,7 @@ import java.util.Set;
 
 @Slf4j
 @Component
-@Profile({"dev", "prod"})
+@Profile("dev")
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
